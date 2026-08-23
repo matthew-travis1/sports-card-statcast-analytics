@@ -9,6 +9,7 @@ the 28-day forward return window completely finished prior to 'T' (future_end_da
 
 import pandas as pd
 import os
+import sys
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
@@ -135,6 +136,8 @@ if __name__ == "__main__":
             print(f"\nSuccess! Saved all out-of-sample predictions to '{output_path}'")
         else:
             print("\nError! No predictions generated. Dataset may not have enough usable rows.")
+            sys.exit(1)
             
     else:
         print(f"\nError! '{dataset_path}' not found. Confirm that build_features.py has been run.")
+        sys.exit(1)

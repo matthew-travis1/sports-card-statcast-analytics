@@ -12,6 +12,7 @@ current/future market conditions don't leak into the past.
 import pandas as pd
 import numpy as np
 import os
+import sys
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
@@ -149,7 +150,7 @@ def generate_live_predictions(df, features, target_col='target_28d_log_return'):
 if __name__ == "__main__":
     
     dataset_path = 'data/model_dataset.csv'
-    output_dir = 'outputs'
+    output_dir = os.path.join('outputs', 'generated')
     output_path = os.path.join(output_dir, 'latest_predictions.csv')
     
     if os.path.exists(dataset_path):
@@ -181,6 +182,8 @@ if __name__ == "__main__":
             
         except Exception as e:
             print(f"\nError! During prediction generation: {e}")
+            sys.exit(1)
             
     else:
         print(f"\nError! '{dataset_path}' not found. Confirm that build_features.py has been run.")
+        sys.exit(1)

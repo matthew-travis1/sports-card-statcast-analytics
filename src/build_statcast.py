@@ -10,6 +10,7 @@ import pandas as pd
 import requests
 import urllib.parse
 import os
+import sys
 from datetime import datetime, timezone
 from pybaseball import statcast_batter, cache
 
@@ -155,7 +156,7 @@ if __name__ == "__main__":
     except FileNotFoundError:
         print("\nError! No 'data/card_names.csv' file found.")
         print("Please ensure the target universe file exists before running.")
-        exit(1)
+        sys.exit(1)
         
     unique_players = card_data['player_name'].unique()
     all_player_logs = []

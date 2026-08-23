@@ -12,6 +12,7 @@ biased evaluation.
 import pandas as pd
 import numpy as np
 import os
+import sys
 from scipy.stats import spearmanr
 
 MIN_CARDS_FOR_PORTFOLIO = 5
@@ -199,7 +200,7 @@ def run_backtest_suite(preds_df):
 if __name__ == "__main__":
     
     dataset_path = 'data/ml_predictions.csv'
-    output_dir = 'outputs/example_results'
+    output_dir = os.path.join('outputs', 'generated')
     
     if os.path.exists(dataset_path):
         os.makedirs(output_dir, exist_ok=True)
@@ -211,5 +212,9 @@ if __name__ == "__main__":
             summary_path = os.path.join(output_dir, 'backtest_summary.csv')
             summary_df.to_csv(summary_path, index=False)
             print(f"\nSuccess! Saved backtest results to '{summary_path}'")
+        else:
+            print(f"\nError! Backtest completed but produced no summary results.")
+            sys.exit(1)
     else:
         print(f"Error! '{dataset_path}' not found. Run train_models.py first.")
+        sys.exit(1)

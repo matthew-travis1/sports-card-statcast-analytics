@@ -9,6 +9,7 @@ parallels, autographs, and ungraded variations.
 
 import pandas as pd
 import os
+import sys
 import time
 import requests
 import re
@@ -296,7 +297,7 @@ if __name__ == "__main__":
             card_data = pd.read_csv('data/card_names.csv')
         except FileNotFoundError:
             print(f"\nNo 'data/card_names.csv' file found. Please ensure the target universe file exists.")
-            exit(1)
+            sys.exit(1)
             
         pb_key = os.getenv("PARSEBOT_API_KEY")
         apify_key = os.getenv("APIFY_API_TOKEN")
@@ -316,7 +317,7 @@ if __name__ == "__main__":
         try:
             apify_df, apify_rejects = fetch_apify_recent_sales(card_data, apify_key)
         except Exception as e:
-            print(f"\nERROR! Apify halted: {e}")
+            print(f"\nError! Apify halted: {e}")
             apify_df = pd.read_csv('data/apify_checkpoint.csv') if os.path.exists('data/apify_checkpoint.csv') else pd.DataFrame()
             apify_rejects = pd.DataFrame()
 

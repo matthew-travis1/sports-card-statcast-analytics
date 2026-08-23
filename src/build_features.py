@@ -12,6 +12,7 @@ features from the 'V3B' feature candidate. Experimental V4/V5 market-response fe
 import pandas as pd
 import numpy as np
 import os
+import sys
 
 def _compute_statcast_metrics(df_subset, prefix):
     """
@@ -257,3 +258,4 @@ if __name__ == "__main__":
     else:
         print("\nError! Missing files.")
         print(f"Confirm '{SALES_CSV}' and '{STATCAST_CSV}' exist before building features.")
+        sys.exit(1)
