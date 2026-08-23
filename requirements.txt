@@ -1,0 +1,12 @@
+# Data Manipulation & Math
+pandas
+numpy
+
+# Machine Learning & Statistics
+scikit-learn
+scipy
+
+# APIs & Data Collection
+requests
+apify-client
+pybaseball
