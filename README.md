@@ -3,14 +3,24 @@
 ## Project Overview
 
 Sports Card Statcast Analytics is a Python data science project that combines MLB Statcast performance data with historical sports card transactions to investigate whether advanced batting metrics can help predict a player's relative card price performance over the following 28 days.
-
 The project is designed as a **point-in-time forecasting experiment**. Every model uses only information that would have been available on the historical prediction date, helping prevent future-data leakage.
-
-The primary goal is not to predict an exact future card price. Instead, the project evaluates whether eligible sports cards can be **ranked by their expected relative performance** over the following 28 days.
+The primary goal is to evaluate whether eligible sports cards can be **ranked by their expected relative performance** over the following 28 days.
 
 ## Demo
 
-A project workflow diagram and example model results will be added as the GitHub version of the pipeline is completed.
+A condensed public dataset is included in `data/sample/` so the
+machine learning pipeline can be run without external API calls.
+
+Example outputs generated from the public sample are available in
+`outputs/example_results/`, including:
+
+- `sample_backtest_summary.csv` — model comparison and backtest metrics
+- `sample_latest_predictions.csv` — latest cross-sectional card rankings
+
+The public sample is a reduced demonstration dataset and should not be
+interpreted as reproducing results from the complete research dataset.
+
+Note: Data Visualization in progress...
 
 ## Tech Stack
 
@@ -18,16 +28,25 @@ A project workflow diagram and example model results will be added as the GitHub
 * pandas
 * NumPy
 * scikit-learn
-* statsmodels
+* SciPy
 * pybaseball / MLB Statcast
+* requests
+* Apify API client
 * Git
 * GitHub
 
 ## How to Run Locally
 
-The repository is currently being converted from a research project into a reproducible GitHub portfolio project.
+Clone the repository and install the project dependencies:
 
-Final setup and execution instructions will be added once the core pipeline has been migrated and the project entry point is complete.
+bash
+git clone https://github.com/matthew-travis1/sports-card-statcast-analytics.git
+cd sports-card-statcast-analytics
+python -m pip install -r requirements.txt
+
+After preparing the sample data as described in the Demo section, run:
+bash
+python main.py
 
 ## What I Learned
 
@@ -47,19 +66,18 @@ This project has provided practical experience with:
 * Some cards and players have limited transaction liquidity.
 * Overlapping 28-day prediction periods mean observations should not be treated as completely independent.
 * Current research results are preliminary and should not be interpreted as evidence of a proven trading strategy.
+* Portfolio returns are reported before transaction costs and other trading frictions.
+* Results may be sensitive to a small number of unusually strong or weak card returns.
 
 ## Next Steps
 
-The current priority is converting the research code into a clean, reproducible GitHub project.
+Future research priorities and planned repository updates include:
 
-Planned improvements include:
-
-* Migrating and documenting the core pipeline modules
-* Adding a reproducible project entry point
-* Adding dependency and environment documentation
-* Creating a sanitized sample dataset for demonstration
-* Adding example model outputs and visualizations
-* Expanding the historical dataset for stronger out-of-sample validation
+*   **Data Visualization:** Developing clean, presentation-ready charts to highlight model comparisons and portfolio returns.
+*   **Robustness Diagnostics:** Expanding the backtest suite to stress-test the model against outliers, random noise, and realistic portfolio turnover.
+*   **Liquidity Analysis:** Investigating how different levels of market liquidity impact the reliability of the ranking signals.
+*   **Statistical Analysis:** Expand statistical testing to better evaluate the predictive power and significance of individual baseball metrics.
+*   **Dataset Expansion:** Collecting additional out-of-sample transaction data to ensure model stability across a larger, more diverse card universe.
 
 ## Development Assistance
 
