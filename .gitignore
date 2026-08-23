@@ -216,3 +216,43 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Additional IDE and OS artifacts
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Sports Card Statcast Analytics
+
+# Credentials and local secrets
+*.env
+credentials.json
+secrets.json
+psa_browser_profile/
+apify_storage/
+
+# Local/full datasets
+data/raw/
+data/interim/
+data/card_names.csv
+data/clean_historical_sales.csv
+data/statcast_pa_log.csv
+data/model_dataset.csv
+data/ml_predictions.csv
+
+# Generated checkpoints and diagnostics
+data/parsebot_checkpoint.csv
+data/apify_checkpoint.csv
+data/rejected_card_sales.csv
+data/extreme_targets.csv
+
+# Local/generated prediction outputs
+outputs/generated/
+outputs/latest_predictions.csv
+outputs/*.csv
+
+# Public sample data and example results are intentionally allowed
+!data/sample/
+!data/README.md
+!outputs/example_results/
